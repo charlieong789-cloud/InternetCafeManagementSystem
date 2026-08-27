@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — CaféNet</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">☕ CaféNet</a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="form-start-session.html">Start Session</a></li>
+      <li><a href="form-end-session.html">End Session</a></li>
+      <li><a href="form-computer.html">Computers</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+    </ul>
+    <a id="authBtn" href="form-login.html" class="btn btn-sm active-btn">Login</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       LOGIN PAGE CONTENT
+  ═══════════════════════════════════ -->
+  <main class="main-content login-page">
+
+    <div class="login-wrapper">
+      <div class="login-card">
+
+        <!-- Logo / Header -->
+        <div class="login-header">
+          <span class="login-icon">🔐</span>
+          <h1 class="login-title">Login</h1>
+          <p class="login-sub">Internet Café in General Santos City</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+
+          <div class="form-group">
+            <label for="loginUser">Username <span class="req">*</span></label>
+            <input
+              type="text"
+              id="loginUser"
+              placeholder="admin"
+              required
+              autocomplete="username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPass">Password <span class="req">*</span></label>
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="loginPass"
+                placeholder="••••••••"
+                required
+                minlength="6"
+                autocomplete="current-password"
+              />
+              <button type="button" class="toggle-pass" onclick="togglePassword()" title="Show/Hide Password">👁️</button>
+            </div>
+          </div>
+
+          <div class="form-group checkbox-inline">
+            <label>
+              <input type="checkbox" id="rememberMe" />
+              Remember Me
+            </label>
+          </div>
+
+          <!-- Error -->
+          <div class="form-error" id="loginError"></div>
+
+          <button type="submit" class="btn full-width" style="background-color:#168aad;">Login</button>
+
+          <p class="modal-hint">
+            Demo credentials: <strong>admin</strong> / <strong>admin123</strong>
+          </p>
+
+        </form>
+
+        <div class="login-footer-links">
+          <a href="index.html">← Back to Home</a>
+          <a href="dashboard.html">Go to Dashboard →</a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="sharedFooter"></footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

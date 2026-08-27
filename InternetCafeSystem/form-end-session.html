@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>End Session & Payment — CaféNet</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">☕ CaféNet</a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="form-start-session.html">Start Session</a></li>
+      <li><a href="form-end-session.html" class="active">End Session</a></li>
+      <li><a href="form-computer.html">Computers</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+    </ul>
+    <a id="authBtn" href="form-login.html" class="btn btn-sm">Login</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════ -->
+  <main class="main-content">
+
+    <h2 class="section-title">💳 End Session &amp; Process Payment</h2>
+
+    <div class="card">
+      <h3 class="card-title">⏹ Payment Form</h3>
+
+      <form id="endSessionForm" onsubmit="endSession(event)" novalidate>
+
+        <!-- Row 1 -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="endPcSelect">Select Active Session <span class="req">*</span></label>
+            <select id="endPcSelect" required onchange="previewBill()">
+              <option value="">-- Select PC --</option>
+            </select>
+            <span class="field-hint">Only PCs with active sessions are listed</span>
+          </div>
+
+          <div class="form-group">
+            <label for="extraPages">Extra Print / Scan Pages</label>
+            <input
+              type="number"
+              id="extraPages"
+              min="0"
+              value="0"
+              onchange="previewBill()"
+            />
+            <span class="field-hint">₱5 per additional page</span>
+          </div>
+        </div>
+
+        <!-- Bill Preview -->
+        <div class="bill-preview" id="billPreview">
+          <p>Select an active session above to preview the bill.</p>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="amountPaid">Amount Paid (₱) <span class="req">*</span></label>
+            <input
+              type="number"
+              id="amountPaid"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
+              required
+              oninput="calcChange()"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Change</label>
+            <input
+              type="text"
+              id="changeDisplay"
+              readonly
+              value="₱ 0.00"
+              class="readonly-field"
+            />
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div class="form-error" id="formError"></div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-danger">⏹ End Session &amp; Pay</button>
+          <button type="reset"  class="btn btn-outline" onclick="resetEndForm()">🔄 Clear</button>
+          <a href="dashboard.html" class="btn btn-outline">← Back to Dashboard</a>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Active Sessions Reference Table -->
+    <div class="card">
+      <h3 class="card-title">📋 Active Sessions Reference</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>PC #</th>
+              <th>Customer</th>
+              <th>Type</th>
+              <th>Start Time</th>
+              <th>Duration</th>
+              <th>Est. Bill</th>
+              <th>Services</th>
+            </tr>
+          </thead>
+          <tbody id="activeSessionsBody">
+            <tr><td colspan="7" class="no-data">No active sessions.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="sharedFooter"></footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/end-session.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Session — CaféNet</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">☕ CaféNet</a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="form-start-session.html" class="active">Start Session</a></li>
+      <li><a href="form-end-session.html">End Session</a></li>
+      <li><a href="form-computer.html">Computers</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+    </ul>
+    <a id="authBtn" href="form-login.html" class="btn btn-sm">Login</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════ -->
+  <main class="main-content">
+
+    <h2 class="section-title">▶️ Start New Customer Session</h2>
+
+    <div class="card">
+      <h3 class="card-title">➕ Session Details</h3>
+
+      <form id="startSessionForm" onsubmit="startSession(event)" novalidate>
+
+        <!-- Row 1 -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="custName">Customer Name <span class="req">*</span></label>
+            <input
+              type="text"
+              id="custName"
+              placeholder="Enter full name"
+              required
+              minlength="2"
+              autocomplete="off"
+            />
+            <span class="field-hint">Minimum 2 characters</span>
+          </div>
+
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pcSelect">Assign Computer <span class="req">*</span></label>
+            <select id="pcSelect" required onchange="onPcChange()">
+              <option value="">-- Select Available PC --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sessionType">Session Type <span class="req">*</span></label>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <select id="sessionType" required disabled style="flex:1">
+                <option value="">-- Select a PC first --</option>
+                <option value="open">⏱️ Open Time (pay per actual use)</option>
+                <option value="regular">🖥️ Regular (₱20/hr)</option>
+                <option value="gaming">🎮 Gaming (₱30/hr)</option>
+                <option value="student">🎓 Student (₱15/hr)</option>
+              </select>
+              <button type="button" id="openTimeBtn" class="btn btn-outline btn-sm" onclick="toggleOpenTime()" disabled title="Switch to Open Time billing">⏱️ Open Time</button>
+            </div>
+            <span class="field-hint" id="sessionTypeHint">Select a computer to set the session type</span>
+          </div>
+        </div>
+
+        <!-- Additional Services -->
+        <div class="form-group">
+          <label>Additional Services</label>
+          <div class="checkbox-group">
+            <label>
+              <input type="checkbox" name="service" value="printing" data-price="5" />
+              🖨️ Printing (₱5/page)
+            </label>
+            <label>
+              <input type="checkbox" name="service" value="scanning" data-price="10" />
+              📄 Scanning (₱10/page)
+            </label>
+            <label>
+              <input type="checkbox" name="service" value="headset" data-price="5" />
+              🎧 Headset Rental (₱5)
+            </label>
+            <label>
+              <input type="checkbox" name="service" value="webcam" data-price="10" />
+              📷 Webcam Rental (₱10)
+            </label>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label for="sessionNotes">Notes</label>
+          <textarea id="sessionNotes" rows="3" placeholder="Optional notes about this session..."></textarea>
+        </div>
+
+        <!-- Error message -->
+        <div class="form-error" id="formError"></div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">▶ Start Session</button>
+          <button type="reset"  class="btn btn-outline" onclick="resetSessionForm()">🔄 Clear Form</button>
+          <a href="dashboard.html" class="btn btn-outline">← Back to Dashboard</a>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Available PCs Info -->
+    <div class="card">
+      <h3 class="card-title">🟢 Currently Available Computers</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>PC #</th>
+              <th>Type</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody id="availablePcsBody">
+            <tr><td colspan="3" class="no-data">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="sharedFooter"></footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/start-session.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transactions — CaféNet</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">☕ CaféNet</a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="form-start-session.html">Start Session</a></li>
+      <li><a href="form-end-session.html">End Session</a></li>
+      <li><a href="form-computer.html">Computers</a></li>
+      <li><a href="transactions.html" class="active">Transactions</a></li>
+    </ul>
+    <a id="authBtn" href="form-login.html" class="btn btn-sm">Login</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════ -->
+  <main class="main-content">
+
+    <h2 class="section-title">💰 Transaction Records</h2>
+
+    <!-- Summary Stats -->
+    <div class="stats-grid" style="margin-bottom:1.5rem;">
+      <div class="stat-card">
+        <span class="stat-num" id="totalTxns">0</span>
+        <span class="stat-label">Total Transactions</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="todayTxns">0</span>
+        <span class="stat-label">Today's Transactions</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="totalRevenue">₱0</span>
+        <span class="stat-label">All-Time Revenue</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="todayRevenue">₱0</span>
+        <span class="stat-label">Today's Revenue</span>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <label for="filterDate" style="color:var(--text-muted);font-size:.9rem;">Filter by Date:</label>
+      <input type="date" id="filterDate" onchange="filterTransactions()" />
+      <button class="btn btn-sm btn-outline" onclick="clearFilter()">Show All</button>
+      <span class="total-display">Showing: <strong id="filteredTotal">₱0.00</strong></span>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="card">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Date &amp; Time</th>
+              <th>Customer</th>
+              <th>PC #</th>
+              <th>Type</th>
+              <th>Duration</th>
+              <th>Services</th>
+              <th>Total (₱)</th>
+              <th>Paid (₱)</th>
+              <th>Change (₱)</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsBody">
+            <tr><td colspan="10" class="no-data">No transactions recorded yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a href="dashboard.html" class="btn btn-outline">← Back to Dashboard</a>
+      <a href="form-end-session.html" class="btn btn-primary">💳 Process Payment</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="sharedFooter"></footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/transactions.js"></script>
+</body>
+</html>

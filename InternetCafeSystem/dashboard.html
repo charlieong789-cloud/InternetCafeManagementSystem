@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — CaféNet</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">☕ CaféNet</a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="form-start-session.html">Start Session</a></li>
+      <li><a href="form-end-session.html">End Session</a></li>
+      <li><a href="form-computer.html">Computers</a></li>
+      <li><a href="transactions.html">Transactions</a></li>
+    </ul>
+    <a id="authBtn" href="form-login.html" class="btn btn-sm">Login</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════ -->
+  <main class="main-content">
+
+    <h2 class="section-title">📊 Dashboard</h2>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-num" id="statActive">0</span>
+        <span class="stat-label">Active Sessions</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statAvail">0</span>
+        <span class="stat-label">Available PCs</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statToday">₱0</span>
+        <span class="stat-label">Today's Revenue</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statTxn">0</span>
+        <span class="stat-label">Transactions Today</span>
+      </div>
+    </div>
+
+    <!-- PC Status Grid -->
+    <h3 class="sub-title">Computer Status Overview</h3>
+    <div class="pc-grid" id="pcGrid"></div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <span class="legend-item"><span class="dot dot-green"></span> Available</span>
+      <span class="legend-item"><span class="dot dot-red"></span> Occupied</span>
+      <span class="legend-item"><span class="dot dot-yellow"></span> Maintenance</span>
+      <span class="legend-item"><span class="dot dot-blue"></span> Reserved</span>
+    </div>
+
+    <!-- Active Sessions Table -->
+    <h3 class="sub-title">Active Sessions</h3>
+    <div class="card">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>PC #</th>
+              <th>Customer</th>
+              <th>Type</th>
+              <th>Start Time</th>
+              <th>Duration</th>
+              <th>Est. Bill</th>
+              <th>Services</th>
+            </tr>
+          </thead>
+          <tbody id="activeSessionsBody">
+            <tr><td colspan="7" class="no-data">No active sessions.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <a href="form-start-session.html" class="btn btn-primary">▶ Start New Session</a>
+      <a href="form-end-session.html"   class="btn btn-danger">⏹ End Session &amp; Pay</a>
+      <a href="form-computer.html"      class="btn btn-outline">➕ Add Computer</a>
+      <a href="transactions.html"       class="btn btn-outline">💰 View Transactions</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="sharedFooter"></footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
